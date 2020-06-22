@@ -10,7 +10,7 @@ pygmentsstyle: "monokai"
 pygmentscodefences: true
 pygmentscodefencesguesssyntax: true
 
-paginate: 10
+paginate: 5
 
 enableEmoji: true
 
