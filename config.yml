@@ -1,0 +1,46 @@
+baseURL: "http://example.org/"
+languageCode: "pt-br"
+title: "ecles.io"
+theme: "archie"
+
+copyright: "© Eclésio Melo"
+
+# Code Highlight
+pygmentsstyle: "monokai"
+pygmentscodefences: true
+pygmentscodefencesguesssyntax: true
+
+paginate: 10
+
+enableEmoji: true
+
+params:
+  mode: "auto"
+  featherIconsCDN: true
+  subtitle: "Blog sobre tecnologia, desenvolvimento de software e talvez sobre jogos mas por enquanto eu estou um pouco ocupado jogando eles."
+  social:
+    - name: "Github"
+      icon: "github"
+      url: "https://github.com/EclesioMeloJunior"
+
+    - name: "Twitter"
+      icon: "twitter"
+      url: "https://twitter.com/ecl3sio"
+
+menu:
+  main:
+    - name: "Inicio"
+      url: "/"
+      weight: 1
+
+    - name: "Publicações"
+      url: "/posts"
+      weight: 2
+
+    - name: "Sobre"
+      url: "/about"
+      weight: 3
+
+    - name: "Tags"
+      url: "/tags"
+      weight: 4
