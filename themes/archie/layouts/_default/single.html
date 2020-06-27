@@ -3,12 +3,16 @@
   <article>
     <div class="title">
       <h1 class="title">{{ .Title }}</h1>
-      <div class="meta">Postado em {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span
+      {{ if isset .Params "date"  }}
+      <div class="meta">Postado em {{ dateFormat "Jan 2, 2006" .Params.date }}{{ if .Draft }} <span
           class="draft-label">DRAFT</span> {{ end }}</div>
+      {{ end }}
       {{ if isset .Params "updatedate" }}
       <div class="meta">Atualizado em {{ dateFormat "Jan 2, 2006" .Params.updatedate }}</div>
       {{ end }}
+      {{ if isset .Params "timetoread" }}
       <span>Tempo de Leitura: <strong>{{ .Params.timetoread }}</strong></span>
+      {{ end }}
     </div>
     {{ if isset .Params "tldr" }}
     <div class="tldr">
