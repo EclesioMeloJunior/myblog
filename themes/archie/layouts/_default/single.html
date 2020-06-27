@@ -1,38 +1,42 @@
 {{ define "main" }}
 <main>
-	<article>
-		<div class="title">
-			<h1 class="title">{{ .Title }}</h1>
-			<div class="meta">Postado em {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
-			<span>Tempo de Leitura: <strong>{{ .Params.timetoread }}</strong></span>
-		</div>
-		{{ if isset .Params "tldr" }}
-		<div class="tldr">
-			<strong>tl;dr:</strong>
-			{{ .Params.tldr }}
-		</div>{{ end }}
+  <article>
+    <div class="title">
+      <h1 class="title">{{ .Title }}</h1>
+      <div class="meta">Postado em {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span
+          class="draft-label">DRAFT</span> {{ end }}</div>
+      {{ if isset .Params "updatedate" }}
+      <div class="meta">Atualizado em {{ dateFormat "Jan 2, 2006" .Params.updatedate }}</div>
+      {{ end }}
+      <span>Tempo de Leitura: <strong>{{ .Params.timetoread }}</strong></span>
+    </div>
+    {{ if isset .Params "tldr" }}
+    <div class="tldr">
+      <strong>tl;dr:</strong>
+      {{ .Params.tldr }}
+    </div>{{ end }}
 
-		<section class="body">
-			{{ if isset .Params "image" }}
-			<div style="width: 100%; height: 350px;; background-image: url('{{ .Params.image }}');background-size: cover;">
-			</div>
-			{{ end }}
-			{{ .Content }}
-		</section>
+    <section class="body">
+      {{ if isset .Params "image" }}
+      <div style="width: 100%; height: 350px;; background-image: url('{{ .Params.image }}');background-size: cover;">
+      </div>
+      {{ end }}
+      {{ .Content }}
+    </section>
 
-		<div class="post-tags">
-			{{ if ne .Type "page" }}
-			{{ if gt .Params.tags 0 }}
-			<nav class="nav tags">
-				<ul class="tags">
-					{{ range .Params.tags }}
-					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-					{{ end }}
-				</ul>
-			</nav>
-			{{ end }}
-			{{ end }}
-		</div>
-	</article>
+    <div class="post-tags">
+      {{ if ne .Type "page" }}
+      {{ if gt .Params.tags 0 }}
+      <nav class="nav tags">
+        <ul class="tags">
+          {{ range .Params.tags }}
+          <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      {{ end }}
+      {{ end }}
+    </div>
+  </article>
 </main>
 {{ end }}
