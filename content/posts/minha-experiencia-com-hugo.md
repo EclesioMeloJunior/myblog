@@ -4,7 +4,7 @@ date: 2020-06-21
 title: 'The Big Bang! 💥'
 slug: 'the_big_bang'
 image: '/images/header-post-1.jpg'
-timetoread: '1 minutos'
+timetoread: '1 minuto'
 description: 'Nessa publicação quero mostrar a intenção desse blog e a minha motivação para começar. Esta é minha primeira publicação em um blog, então, feedbacks serão sempre bem vindos!'
 ---
 
