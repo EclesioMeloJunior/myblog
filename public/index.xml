@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ecles.io</title>
+    <link>https://ecles.io/</link>
+    <description>Recent content on ecles.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <copyright>© Eclésio Melo</copyright>
+    <lastBuildDate>Sun, 21 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ecles.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Big Bang! 💥</title>
+      <link>https://ecles.io/posts/the_big_bang/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ecles.io/posts/the_big_bang/</guid>
+      <description>Introdução Nessa publicação quero mostrar a intenção desse blog e a minha motivação para começar. Esta é minha primeira publicação em um blog, então, feedbacks serão sempre bem vindos!
+O repositório desse blog está aqui
+O que esperar desse blog? O motivo de começar um blog ou publicar textos foi uma ideia que surgiu já tem um tempo. Eu sempre escutei do grande @badtux_ (#VAIIIIIII) que devemos ajudar a comunidade assim como ela nos ajuda o tempo todo, e com esse pensamento eu decidi criar o ecles.</description>
+    </item>
+    
+    <item>
+      <title>Sobre</title>
+      <link>https://ecles.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ecles.io/about/</guid>
+      <description>Me chamo Eclésio Melo Júnior, atualmente moro em Vilhena/Rondônia (RO) e gosto de construir aplicações. Aprendi desenvolvimento de software em 2014 no instituto federal (IFRO) e graças a instituição eu consegui meu primeiro estágio em uma empresa de software local, em 2019 me formei em Análise e Desenvolvimento de Sistemas (IFRO) e atualmente sou desenvolvedor de software na Stone Pagamentos.
+Além disso Além de ser desenvolvedor eu gosto jogar 🎮, prático judo 🇯🇵 e curto planejar viagens ⛰, por mais que elas sejam dificéis de acontencer 😢.</description>
+    </item>
+    
+  </channel>
+</rss>
