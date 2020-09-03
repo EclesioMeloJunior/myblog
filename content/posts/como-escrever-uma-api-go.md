@@ -1,5 +1,4 @@
 ---
-draft: true
 date: 2020-08-24
 title: 'RESTful API em Golang - Parte 01'
 slug: 'escrevendo_api_restful_golang_pt1'
