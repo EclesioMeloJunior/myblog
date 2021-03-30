@@ -16,7 +16,7 @@ A árvore de Merkle (Merkle tree) é uma estrutura de dados proposta por Ralph M
 
 Você pode acessar o código desse post [aqui](https://github.com/crypto2lab/mekle-tree-post)
 
-![Merkle Tree structure](/static/images/merkle_tree_ex_2.png)
+![Merkle Tree structure](/images/merkle_tree_ex_2.png)
 
 # O Problema
 
