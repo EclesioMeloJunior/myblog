@@ -5,14 +5,14 @@ title: 'Merkle Tree: Compartilhando dados de forma segura'
 slug: 'merkle_tree_share_safe'
 image: '/images/zunnoon-ahmed.jpg'
 timetoread: '10 minutos'
-description: 'Nesse post gostaria de explicar uma estrutura de dados que é muito utilizada em algumas blockchains.'
+description: 'Nesse post gostaria de explicar uma estrutura de dados que é muito utilizada em arquiteturas distribuídas.'
 ---
 
 # Introdução
 
 [`header image created by Zunnoon Ahmed`](https://unsplash.com/photos/qqvz2MRH8_M?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
 
-A árvore de Merkle (Merkle tree) é uma estrutura de dados proposta por Ralph Merkle na qual consiste em uma árvore binária de hashes (hash é o resumo de um conjunto de dados de tamanhos variados para uma cadeia de caracteres de tamanho fixo) onde cada folha tem o hash do bloco de dados e cada nó tem o hash dos hashs dos seus nós filhos. Esse tipo de estrutura é eficiente e ideal para garantir a consistência e ordem dos dados. Caso não conheça árvores binárias pode conhecer mais [aqui](https://www.geeksforgeeks.org/binary-tree-data-structure/)
+A árvore de Merkle (Merkle tree) é uma estrutura de dados proposta por Ralph Merkle, em 1987 no artigo (**A Digital Signature Based on a Conventional Encryption Function**)[https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf] na qual consiste em uma árvore binária de hashes (hash é o resumo de um conjunto de dados de tamanhos variados para uma cadeia de caracteres de tamanho fixo) onde cada folha tem o hash do bloco de dados e cada nó tem o hash dos hashs dos seus nós filhos. Esse tipo de estrutura é eficiente e ideal para garantir a consistência e ordem dos dados. É uma estrutura que se assemelha a uma árvore binária, caso não conheça árvores binárias pode conhecer mais [aqui](https://www.geeksforgeeks.org/binary-tree-data-structure/)
 
 Você pode acessar o código desse post [aqui](https://github.com/crypto2lab/mekle-tree-post)
 
@@ -208,4 +208,3 @@ go run main.go
 # Conclusão
 
 Agora que você definiu um contrato e econtrou a raiz de merkle desse contrato basta mandar o hash para toda a sua rede! Sempre que alguem mandar uma receita de bolo para outra pessoa a parte que recebe a receita deve encontrar a raiz de Merkle da receita que recebeu e comparar com a raiz de Merkle que assegura o conteúdo e se os valores forem iguais, show de bola a receita é segura, contudo se os valores forem diferentes então quem enviou a receita está querendo sabotar a rede.
-
