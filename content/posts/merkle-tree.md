@@ -3,7 +3,7 @@ publish: true
 date: 2021-03-30
 title: 'Merkle Tree: Compartilhando dados de forma segura'
 slug: 'merkle_tree_share_safe'
-image: '/images/header-post-1.jpg'
+image: '/images/zunnoon-ahmed.jpg'
 timetoread: '10 minutos'
 description: 'Nesse post gostaria de explicar uma estrutura de dados que é muito utilizada em algumas blockchains.'
 ---
