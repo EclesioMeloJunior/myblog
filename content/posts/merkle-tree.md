@@ -5,7 +5,7 @@ title: 'Merkle Tree: Compartilhando dados de forma segura'
 slug: 'merkle_tree_share_safe'
 image: '/images/zunnoon-ahmed.jpg'
 timetoread: '10 minutos'
-description: 'Nesse post gostaria de explicar uma estrutura de dados que é muito utilizada em arquiteturas distribuídas.'
+description: 'Nesse post gostaria de explicar uma estrutura de dados que é muito utilizada em arquiteturas distribuídas, além de implementar um caso de uso utilizando a liguagem Go'
 ---
 
 # Introdução
@@ -20,7 +20,7 @@ Você pode acessar o código desse post [aqui](https://github.com/crypto2lab/mek
 
 # O Problema
 
-Imagine que vc e uma quantidade de pessoas compartilham uma receita de fazer bolo de cenoura, e o contrato que todos definiram segue a seguinte ordem:
+Imagine que você e uma quantidade de pessoas compartilham uma receita de fazer bolo de cenoura, e o contrato que todos definiram segue a seguinte ordem:
 
 ```
 fazer_bolo_contrato := []string{
@@ -35,9 +35,7 @@ fazer_bolo_contrato := []string{
 }
 ```
 
-Uma vez definido o contrato que todas as pessoas aceitam agora temos uma rede que compartilha desse contrato e confia nele para ter um bolo de cenoura impecável.
-
-A nossa rede não é centralizada, não existe um ponto central que define como o bolo de cenoura deve ser feito, o nosso contrato é público para escrita e leitura (quem quiser poderá alterar o contrato e compartilhar com a rede), por um lado isso é bom pois podemos ter variações deliciosas de bolo de cenoura sendo compartilhadas pela rede, entretanto podemos ter pessoas mal intencionadas que podem sabotar o bolo de cenoura e compartilhar receitas fajutas estragando a confiabilidade da rede. Com isso entra a estrutura que vem solucionar o nosso problema: a **árvore de Merkle** e também teremos a **raiz de Merkle**
+Uma vez definido o contrato que todas as pessoas aceitam agora temos uma rede que compartilha desse contrato e confia nele para ter um bolo de cenoura impecável. Entretanto a nossa rede não é centralizada, não existe um ponto central que define como o bolo de cenoura deve ser feito, o nosso contrato é público para escrita e leitura (quem quiser poderá alterar o contrato e compartilhar com todos), por um lado isso é bom pois podemos ter variações deliciosas de bolo de cenoura sendo compartilhadas, entretanto podemos ter pessoas mal intencionadas que podem sabotar o bolo de cenoura e compartilhar receitas fajutas estragando a confiabilidade da rede. Com isso entra a estrutura que vem solucionar o nosso problema: a **árvore de Merkle** e também teremos a **raiz de Merkle**
 
 # Aplicando a solução na rede
 
@@ -45,7 +43,7 @@ Agora que nossa rede está sucetível a ameaças de fraude devemos fazer com que
 
 Para isso toda a rede deve encontrar a **raiz de Merkle** (_A merkle tree é uma árvore binária feita das folhas até chegar na raiz_) do contrato da receita de bolo de cenoura que é confiável, o passo a passo para fazer isso é:
 
-1. Na lista **fazer_bolo_contrato** vamos encontrar o hash de cada item e armazena-los em uma nova lista chamada **fazer_bolo_hashes**:
+- Na lista **fazer_bolo_contrato** vamos encontrar o hash de cada item e armazena-los em uma nova lista chamada **fazer_bolo_hashes**:
 
 ```go
 import (
@@ -64,7 +62,7 @@ for _, passo := range fazer_bolo_contrato {
 }
 ```
 
-2. A nova lista **fazer_bolo_hashes** deverá ter o mesmo tamanho da lista **fazer_bolo_contrato** só que os valores serão cadeias de caracteres de tamanho fixo (hashs) parecida com isso:
+- A nova lista **fazer_bolo_hashes** deverá ter o mesmo tamanho da lista **fazer_bolo_contrato** só que os valores serão cadeias de caracteres de tamanho fixo (hashs) parecida com isso:
 
 ```
 [
@@ -75,7 +73,7 @@ for _, passo := range fazer_bolo_contrato {
 ]
 ```
 
-3. Se algum passo no contrato da receita de fazer bolo for alterado a lista de hashes será completamente diferente, dessa forma já garantimos a consistência dos dados, o próximo passo é encontrar a raiz de Merkle que irá nos dizer se uma lista está de acordo ou se está alterada, para isso vamos construir a estrutura de dados de uma árvore binária:
+- Se algum passo no contrato da receita de fazer bolo for alterado a lista de hashes será completamente diferente, dessa forma já garantimos a consistência dos dados, o próximo passo é encontrar a raiz de Merkle que irá nos dizer se uma lista está de acordo ou se está alterada, para isso vamos construir a estrutura de dados de uma árvore binária:
 
 ```go
 // ...
@@ -87,7 +85,7 @@ type No struct {
 }
 ```
 
-4. Como descrito acima, a estrutura tem a propriedade **hashNo** que armazenará um hash. O primeiro passo para encontrar a raiz de Merkle é construir as folhas da árvore:
+- Como descrito acima, a estrutura tem a propriedade **hashNo** que armazenará um hash. O primeiro passo para encontrar a raiz de Merkle é construir as folhas da árvore:
 
 ```go
 // ...
@@ -117,7 +115,7 @@ func main() {
 }
 ```
 
-5. No passo anterior criamos as folhas utilizando os hashes dos passos para fazer um bolo, como estamos criando folhas então os apontamentos para esquerda e direita são nulos pois não haverá nada abaixo das folhas. O proximo passo será criar os nós intermediários a partir das folhas. É importante lembrar que a árvore de merkle é uma árvore binária montada das folhas até a raiz, então, nesse passo, iremos combinar o hash de duas em duas folhas e para cada par de folhas gerar um **No** intermediário.
+- No passo anterior criamos as folhas utilizando os hashes dos passos para fazer um bolo, como estamos criando folhas então os apontamentos para esquerda e direita são nulos pois não haverá nada abaixo das folhas. O proximo passo será criar os nós intermediários a partir das folhas. É importante lembrar que a árvore de merkle é uma árvore binária montada das folhas até a raiz, então, nesse passo, iremos combinar o hash de duas em duas folhas e para cada par de folhas gerar um **No** intermediário.
 
 ```go
 // ...
@@ -163,7 +161,7 @@ func criar_raiz(hashes [][]byte) *No {
 }
 ```
 
-6. Veja bem que no passo anterior temos uma condição simples mas que faz toda a diferença, quando temos uma lista impar, o último elemento da lista sempre ficará sozinho e nesse caso o que fazemos e combinar o hash dele com ele mesmo. A função **criar_intermediarios** recebe uma lista de folhas e reduz o tamanho dela pela metade, dessa forma já começamos o afunilamento e estamos tendo a forma de uma árvore. Agora que temos os nós intermediários construidos e fazendo referências as folhas o próximo passo é fazer ir combinando os hashs dos nós intermediários até alcançarmos a raiz. 
+- Veja bem que no passo anterior temos uma condição simples mas que faz toda a diferença, quando temos uma lista impar, o último elemento da lista sempre ficará sozinho e nesse caso o que fazemos e combinar o hash dele com ele mesmo. A função **criar_intermediarios** recebe uma lista de folhas e reduz o tamanho dela pela metade, dessa forma já começamos o afunilamento e estamos tendo a forma de uma árvore. Agora que temos os nós intermediários construidos e fazendo referências as folhas o próximo passo é fazer ir combinando os hashs dos nós intermediários até alcançarmos a raiz. 
 
 ```go
 func combinar_intermediarios(intermediarios []*No) *No {
@@ -187,7 +185,7 @@ func criar_raiz(hashes [][]byte) *No {
 }
 ```
 
-7. Ao combinarmos os intermediários até chegar a raiz nós reutilizamos a função **criar_intermediarios** para que ela crie intermediários a partir de outros intermediários até que nos reste um único nó que é a nossa raiz de Merkle, o hash da raiz de Merkle é o resultado da combinação de todos os hashes de nossa árvore. Para ver o hash da raiz de merkle:
+- Ao combinarmos os intermediários até chegar a raiz nós reutilizamos a função **criar_intermediarios** para que ela crie intermediários a partir de outros intermediários até que nos reste um único nó que é a nossa raiz de Merkle, o hash da raiz de Merkle é o resultado da combinação de todos os hashes de nossa árvore. Para ver o hash da raiz de merkle:
 
 ```go
 // ...
@@ -203,8 +201,12 @@ func main() {
 go run main.go
 ```
 
-8. Pronto!! Temos uma raiz que assegura a ordem e conteúdo de nossa lista, não importa quantas vezes você compile e execute o arquivo o resultado da raiz é sempre o mesmo para a lista **fazer_bolo_contrato**, mas se você, ou alguem mudar a lista o hash da raiz será diferente.
+- Pronto!! Temos uma raiz que assegura a ordem e conteúdo de nossa lista, não importa quantas vezes você compile e execute o arquivo o resultado da raiz é sempre o mesmo para a lista **fazer_bolo_contrato**, mas se você, ou alguem mudar a lista o hash da raiz será diferente.
 
 # Conclusão
 
 Agora que você definiu um contrato e econtrou a raiz de merkle desse contrato basta mandar o hash para toda a sua rede! Sempre que alguem mandar uma receita de bolo para outra pessoa a parte que recebe a receita deve encontrar a raiz de Merkle da receita que recebeu e comparar com a raiz de Merkle que assegura o conteúdo e se os valores forem iguais, show de bola a receita é segura, contudo se os valores forem diferentes então quem enviou a receita está querendo sabotar a rede.
+
+# Referências
+
+- [codementor.io/blog/merkle-trees-5h9arzd3n8](https://www.codementor.io/blog/merkle-trees-5h9arzd3n8)
